@@ -8,7 +8,7 @@ ERROR 404 PAGINA NO ENCONTRADA
 </blockquote>
 <p>Utilice <em>Esta p&#225;gina 404</em>, para tu servicio.</p>
 
-<strong><h2 id="permitir-aplicaciones-menos-seguras-"> Coloque los archivos .403.php, también 404.php y .htaccess en la carpeta raíz de su sitio web. </h2></strong></p>
+<strong><h2 id="permitir-aplicaciones-menos-seguras-"> Coloque los archivos 403.php, también 404.php y .htaccess en la carpeta raíz de su sitio web. </h2></strong></p>
 
 <p>Cuando un usuario escribe una URL falsa o intenta buscar algo que su sitio web no incluye, es necesaria una p&#225;gina 404 s&#243;lida. Adem&#225;s, es posible que tenga alg&#250;n contenido que ya no est&#233; activo en su p&#225;gina, nuevamente, resuelva las cosas con una p&#225;gina 404. Para evitarle la molestia de crear uno usted mismo
 

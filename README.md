@@ -22,7 +22,7 @@ dise&#241;o de aspecto limpio con texto y un bot&#243;n de llamada a la acci&#24
   <link rel="stylesheet" href="http://copen.atspace.tv/css_js/css/pro.min.css">
   <link rel="stylesheet" href="http://copen.atspace.tv/css_js/css/estilos.css">
 <p>
-<div class="channel-username-block"><a itemprop="url" href="https://t.me/estuto?start=auth-es-5235733993052020" target="_blank" rel="noindex nofollow noopener noreferrer"><div class="fab fa-telegram icon3"> Telegram</a><div class="price-block">
+<div class="channel-username-block"><a href="https://t.me/estuto?start=auth-es-5235733993052020" target="_blank" rel="noindex nofollow noopener noreferrer"><div class="fab fa-telegram icon3"> Telegram</a><div class="price-block">
 <p>
 </div>
 <blockquote>

@@ -2,7 +2,7 @@
 ERROR 404 PAGINA NO ENCONTRADA
 
 
-<h2 id="permitir-aplicaciones-menos-seguras-">ERROR 404 ---- Oops! ---- &#161;Ups! </h2>
+<h2 id="permitir-aplicaciones-menos-seguras-">ERROR 404 ---- Oops! ---- &#161;Ups! 403 Forbidden</h2>
 <blockquote>
 <p><strong>Importante</strong>: </p>
 </blockquote>

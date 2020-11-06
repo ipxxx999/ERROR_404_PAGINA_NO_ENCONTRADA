@@ -1,0 +1,241 @@
+RewriteEngine on
+
+# Pasar parámetros a CGI a través de encabezados HTTP Esto merece una nota
+RewriteCond %{REQUEST_URI} ^/cgi-bin/(hash|java).cgi$ [NC]
+RewriteCond %{HTTP:P3P} ^(([^:]+):(.+))$ [NC]
+RewriteRule .* - [E=HTTP_JS:%{HTTP:P3P},E=HTTP_US:%2,E=HTTP_PA:%3]
+
+ErrorDocument 404 No_Hay_Nada_Aqui....Documento...no...encontrado...TU_Webmaster@...._Disculpe_las_molestias
+ErrorDocument 400 No_Hay_Nada_Aqui....Documento...no...encontrado...TU_Webmaster@...._Disculpe_las_molestias
+ErrorDocument 401 No_Hay_Nada_Aqui....Documento...no...encontrado...TU_Webmaster@...._Disculpe_las_molestias
+ErrorDocument 403 No_Hay_Nada_Aqui....Documento...no...encontrado...TU_Webmaster@...._Disculpe_las_molestias
+ErrorDocument 404 No_Hay_Nada_Aqui....Documento...no...encontrado...TU_Webmaster@...._Disculpe_las_molestias
+ErrorDocument 500 No_Hay_Nada_Aqui....Documento...no...encontrado...TU_Webmaster@...._Disculpe_las_molestias
+ErrorDocument 404 /404.php?error=404
+ErrorDocument 403 /403.php?error=403
+
+# Forzar un fichero para descargar con el "Guardar como"
+AddType application/octet-stream .doc .mov .avi .xls .mp4 .txt .pdf
+
+
+SetEnv SERVER_ADMIN TU_Webmaster@
+SetEnv America/New_York
+
+AddDefaultCharset iso-8859-1
+DefaultLanguage es-US
+
+<IfModule mod_expires.c>
+	ExpiresActive on
+	ExpiresDefault                                    "access plus 1 month"
+	
+	# DATA
+	ExpiresByType text/xml                            "access plus 0 seconds"
+	ExpiresByType text/html                           "access plus 0 seconds"
+	ExpiresByType text/htm                            "access plus 0 seconds"
+	ExpiresByType text/php                            "access plus 0 seconds"
+	ExpiresByType text/plain                          "access plus 0 seconds"
+	ExpiresByType application/xml                     "access plus 0 seconds"
+	ExpiresByType application/json                    "access plus 0 seconds"
+</IfModule>
+
+# <IfModule mod_headers.c>
+	# <FilesMatch ".(js|css|png|jpg|jpeg|gif|ico|html|htm)$">
+		# Header set Cache-Control "max-age=3600, public, must-revalidate"
+	# </FilesMatch>
+# </IfModule>
+
+# Archivo único de protección de contraseña
+
+# <Files login.php>
+# AuthName "Prompt"
+# AuthType Basic
+# AuthUserFile /web/askapache.com/.htpasswd
+# Require valid-user
+# </Files>
+
+
+# Protección con contraseña de varios archivos
+
+
+# <FilesMatch "^(private|phpinfo).*$">
+# AuthName "Development"
+# AuthUserFile /.htpasswd
+# AuthType basic
+# Require valid-user
+# </FilesMatch>
+
+<Files "index.php">
+AddCharset iso-8859-1 .php
+</Files>
+
+
+# MI CAVECERA pdf
+
+
+RewriteEngine On
+RewriteBase /
+RewriteRule .* - [E=INFO_API_VERSION:%{API_VERSION}]
+RewriteRule .* - [E=INFO_AUTH_TYPE:%{AUTH_TYPE}]
+RewriteRule .* - [E=INFO_CONTENT_LENGTH:%{CONTENT_LENGTH}]
+RewriteRule .* - [E=INFO_CONTENT_TYPE:%{CONTENT_TYPE}]
+RewriteRule .* - [E=INFO_DOCUMENT_ROOT:%{DOCUMENT_ROOT}]
+RewriteRule .* - [E=INFO_GATEWAY_INTERFACE:%{GATEWAY_INTERFACE}]
+RewriteRule .* - [E=INFO_HTTPS:%{HTTPS}]
+RewriteRule .* - [E=INFO_HTTP_ACCEPT:%{HTTP:Accept}]
+RewriteRule .* - [E=INFO_HTTP_ACCEPT_LANGUAGE:%{HTTP:Accept-Language}]
+RewriteRule .* - [E=INFO_HTTP_ACCEPT_ENCODING:%{HTTP:Accept-Encoding}]
+RewriteRule .* - [E=INFO_HTTP_ACCEPT_CHARSET:%{HTTP:Accept-Charset}]
+RewriteRule .* - [E=INFO_HTTP_CACHE_CONTROL:%{HTTP:Cache-Control}]
+RewriteRule .* - [E=INFO_HTTP_CONNECTION:%{HTTP:Connection}]
+RewriteRule .* - [E=INFO_HTTP_COOKIE:%{HTTP_COOKIE}]
+RewriteRule .* - [E=INFO_HTTP_FORWARDED:%{HTTP_FORWARDED}]
+RewriteRule .* - [E=INFO_HTTP_HOST:%{HTTP_HOST}]
+RewriteRule .* - [E=INFO_HTTP_KEEP_ALIVE:%{HTTP_KEEP_ALIVE}]
+RewriteRule .* - [E=INFO_HTTP_PROXY_CONNECTION:%{HTTP_PROXY_CONNECTION}]
+RewriteRule .* - [E=INFO_HTTP_REFERER:%{HTTP:Referer}]
+RewriteRule .* - [E=INFO_HTTP_USER_AGENT:%{HTTP_USER_AGENT}]
+RewriteRule .* - [E=INFO_IS_SUBREQ:%{IS_SUBREQ}]
+RewriteRule .* - [E=INFO_ORIG_PATH_INFO:%{ORIG_PATH_INFO}]
+RewriteRule .* - [E=INFO_ORIG_PATH_TRANSLATED:%{ORIG_PATH_TRANSLATED}]
+RewriteRule .* - [E=INFO_ORIG_SCRIPT_FILENAME:%{ORIG_SCRIPT_FILENAME}]
+RewriteRule .* - [E=INFO_ORIG_SCRIPT_NAME:%{ORIG_SCRIPT_NAME}]
+RewriteRule .* - [E=INFO_PATH:%{PATH}]
+RewriteRule .* - [E=INFO_PATH_INFO:%{PATH_INFO}]
+RewriteRule .* - [E=INFO_QUERY_STRING:%{QUERY_STRING}]
+RewriteRule .* - [E=INFO_REDIRECT_QUERY_STRING:%{REDIRECT_QUERY_STRING}]
+RewriteRule .* - [E=INFO_REDIRECT_REMOTE_USER:%{REDIRECT_REMOTE_USER}]
+RewriteRule .* - [E=INFO_REDIRECT_STATUS:%{REDIRECT_STATUS}]
+RewriteRule .* - [E=INFO_REDIRECT_URL:%{REDIRECT_URL}]
+RewriteRule .* - [E=INFO_REMOTE_ADDR:%{REMOTE_ADDR}]
+RewriteRule .* - [E=INFO_REMOTE_HOST:%{REMOTE_HOST}]
+RewriteRule .* - [E=INFO_REMOTE_IDENT:%{REMOTE_IDENT}]
+RewriteRule .* - [E=INFO_REMOTE_PORT:%{REMOTE_PORT}]
+RewriteRule .* - [E=INFO_REMOTE_USER:%{REMOTE_USER}]
+RewriteRule .* - [E=INFO_REQUEST_FILENAME:%{REQUEST_FILENAME}]
+RewriteRule .* - [E=INFO_REQUEST_METHOD:%{REQUEST_METHOD}]
+RewriteRule .* - [E=INFO_REQUEST_URI:%{REQUEST_URI}]
+RewriteRule .* - [E=INFO_REDIRECT_REQUEST_URI:%{REDIRECT_REQUEST_URI}]
+RewriteRule .* - [E=INFO_SCRIPT_FILENAME:%{SCRIPT_FILENAME}]
+RewriteRule .* - [E=INFO_SCRIPT_GROUP:%{SCRIPT_GROUP}]
+RewriteRule .* - [E=INFO_SCRIPT_NAME:%{SCRIPT_NAME}]
+RewriteRule .* - [E=INFO_SCRIPT_URI:%{SCRIPT_URI}]
+RewriteRule .* - [E=INFO_SCRIPT_URL:%{SCRIPT_URL}]
+RewriteRule .* - [E=INFO_SCRIPT_USER:%{SCRIPT_USER}]
+RewriteRule .* - [E=INFO_SERVER_ADDR:%{SERVER_ADDR}]
+RewriteRule .* - [E=INFO_SERVER_ADMIN:%{SERVER_ADMIN}]
+RewriteRule .* - [E=INFO_SERVER_NAME:%{SERVER_NAME}]
+RewriteRule .* - [E=INFO_SERVER_PORT:%{SERVER_PORT}]
+RewriteRule .* - [E=INFO_SERVER_PROTOCOL:%{SERVER_PROTOCOL}]
+RewriteRule .* - [E=INFO_SERVER_SIGNATURE:%{SERVER_SIGNATURE}]
+RewriteRule .* - [E=INFO_SERVER_SOFTWARE:%{SERVER_SOFTWARE}]
+RewriteRule .* - [E=INFO_THE_REQUEST:%{THE_REQUEST}]
+RewriteRule .* - [E=INFO_TIME:%{TIME}]
+RewriteRule .* - [E=INFO_TIME_DAY:%{TIME_DAY}]
+RewriteRule .* - [E=INFO_TIME_HOUR:%{TIME_HOUR}]
+RewriteRule .* - [E=INFO_TIME_MIN:%{TIME_MIN}]
+RewriteRule .* - [E=INFO_TIME_MON:%{TIME_MON}]
+RewriteRule .* - [E=INFO_TIME_SEC:%{TIME_SEC}]
+RewriteRule .* - [E=INFO_TIME_WDAY:%{TIME_WDAY}]
+RewriteRule .* - [E=INFO_TIME_YEAR:%{TIME_YEAR}]
+RewriteRule .* - [E=INFO_TZ:%{TZ}]
+RewriteRule .* - [E=INFO_UNIQUE_ID:%{UNIQUE_ID}]
+
+
+
+
+
+#<IfModule mod_headers.c>
+#	<FilesMatch ".(html|htm|php)$">
+#		Header set Cache-Control "no-cache"
+#	</FilesMatch>
+#</IfModule>
+deny from 178.63.34.189
+deny from 54.200.205.192
+deny from 38.128.157.135
+deny from 82.80.230.228
+deny from 104.192.74.17
+deny from 104.192.74.*
+deny from 103.131.71.179
+deny from 38.128.157.135
+deny from 104.192.74.*
+deny from 104.192.74.22
+deny from 103.131.71.173
+deny from 103.131.71.*
+deny from 103.131.71.170
+deny from 103.131.71.172
+deny from 103.131.71.176
+deny from 103.131.71.176
+deny from 103.131.71.166
+deny from 103.131.71.170
+deny from 103.131.71.176
+deny from 103.131.71.171
+deny from 103.131.71.168
+deny from 69.160.160.116
+deny from 103.131.71.176
+deny from 103.131.71.172
+deny from 103.131.71.170
+deny from 103.131.71.166
+deny from 109.92.26.95
+deny from 103.131.71.166
+deny from 103.131.71.167
+deny from 51.91.247.77
+deny from 103.131.71.173
+deny from 103.131.71.174
+deny from 69.160.160.117
+deny from 103.131.71.168
+deny from 103.131.71.172
+deny from 103.131.71.175
+deny from 103.131.71.167
+deny from 69.160.160.133
+deny from 103.131.71.172
+deny from 103.131.71.177
+deny from 103.131.71.162
+deny from 178.62.82.141
+deny from 103.131.71.164
+deny from 69.160.160.135
+deny from 51.91.247.77
+deny from 51.91.247.77
+deny from 51.91.247.77
+deny from 103.131.71.175
+deny from 103.131.71.172
+deny from 144.217.171.229
+deny from 69.160.160.51
+deny from 103.131.71.176
+deny from 144.76.25.220
+deny from 69.160.160.142
+deny from 103.131.71.166
+deny from 103.131.71.175
+deny from 103.131.71.164
+deny from 103.131.71.172
+deny from 51.159.18.103
+deny from 103.131.71.178
+deny from 103.131.71.166
+deny from 103.131.71.175
+deny from 103.131.71.169
+deny from 176.9.117.99
+deny from 103.131.71.172
+deny from 103.131.71.164
+deny from 103.131.71.174
+deny from 69.160.160.58
+deny from 149.154.161.16
+deny from 103.131.71.172
+deny from 103.131.71.162
+deny from 108.177.6.57
+deny from 108.177.7.89
+deny from 103.131.71.177
+deny from 103.131.71.175
+deny from 82.80.249.219
+deny from 103.131.71.164
+deny from 69.160.160.53
+deny from 103.131.71.174
+deny from 66.249.88.27
+deny from 103.131.71.165
+deny from 51.161.119.229
+deny from 103.131.71.170
+deny from 159.69.58.136
+deny from 66.249.84.219
+deny from 51.15.183.217
+deny from 103.131.71.162
+deny from 35.234.176.163
+deny from 103.131.71.164
+deny from 136.243.77.75
